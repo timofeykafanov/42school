@@ -6,9 +6,11 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:21:01 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/03 12:56:49 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:25:38 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stddef.h>
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

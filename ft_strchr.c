@@ -6,7 +6,7 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:22:22 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/03 18:25:02 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:17:21 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@ char	*ft_strchr(const char *s, int c)
 	while (*s)
 	{
 		if (c == *s)
-			return (s);
+			return ((char *)s);
 		s++;
 	}
 	if (*s == c)
-		return (s);
+		return ((char *)s);
 	return (0);
 }

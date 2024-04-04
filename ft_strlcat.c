@@ -6,9 +6,11 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:21:42 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/04 10:08:57 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:19:50 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stddef.h>
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
@@ -20,7 +22,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	i = 0;
 	dest_len = 0;
 	src_len = 0;
-	while (dest[dest_len])
+	while (dst[dest_len])
 		dest_len++;
 	while (src[src_len])
 		src_len++;
@@ -30,10 +32,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		space_left = 0;
 	while (i < space_left && src[i])
 	{
-		dest[dest_len + i] = src[i];
+		dst[dest_len + i] = src[i];
 		i++;
 	}
 	if (size > 0)
-		dest[dest_len + i] = '\0';
+		dst[dest_len + i] = '\0';
 	return (dest_len + src_len);
 }
