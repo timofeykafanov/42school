@@ -6,7 +6,7 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:21:15 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/03 15:29:17 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/08 13:00:37 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		while (i != 0)
 		{
 			pdest[i - 1] = psrc[i - 1];
-			i++;
+			i--;
 		}
 	}
 	return (dest);

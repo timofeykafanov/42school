@@ -6,13 +6,15 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:20:15 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/03 10:14:16 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:30:58 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+#include <stddef.h>
+
+size_t	ft_strlen(const char *str)
 {
-	int	len;
+	size_t	len;
 
 	len = 0;
 	while (*str)
