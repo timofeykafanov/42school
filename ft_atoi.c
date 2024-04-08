@@ -17,9 +17,10 @@ int	ft_atoi(const char *nptr)
 
 	sign = 1;
 	result = 0;
-	while (*nptr == ' ' || *nptr == '\n' || *nptr == '\t' || *nptr == '\r')
+	while (*nptr == ' ' || *nptr == '\n' || *nptr == '\t'
+		|| *nptr == '\v' || *nptr == '\f' || *nptr == '\r')
 		nptr++;
-	while (*nptr == '-' || *nptr == '+')
+	if (*nptr == '-' || *nptr == '+')
 	{
 		if (*nptr == '-')
 			sign = -1;

@@ -21,8 +21,10 @@ char	*ft_strrchr(const char *s, int c)
 			match = (char *)s;
 		s++;
 	}
+	if (c == '\0')
+		return ((char *)s);
 	if (match == 0)
 		return (0);
 	else
-		return ((char *)s);
+		return (match);
 }
