@@ -11,69 +11,31 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-//#include "libft.h"
+#include "libft.h"
 
-int	ft_strlen(int size, char **strs, char *sep)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
-	int	res_len;
-	int	str_len;
-	int	sep_len;
+    char	*res;
+    int		i;
+    int		j;
 
-	i = 0;
-	res_len = 0;
-	while (i < size)
-	{
-		str_len = 0;
-		while (strs[i][str_len++])
-			res_len++;
-		if (i < size - 1)
-		{
-			sep_len = 0;
-			while (sep[sep_len++])
-				res_len++;
-		}
-		i++;
-	}
-	return (res_len);
-}
-
-void	ft_fill_str(int size, char **strs, char *sep, char *res)
-{
-	int	i;
-	int	res_len;
-	int	str_len;
-	int	sep_len;
-
-	i = 0;
-	res_len = 0;
-	while (i < size)
-	{
-		str_len = 0;
-		while (strs[i][str_len])
-			res[res_len++] = strs[i][str_len++];
-		if (i < size - 1)
-		{
-			sep_len = 0;
-			while (sep[sep_len])
-				res[res_len++] = sep[sep_len++];
-		}
-		i++;
-	}
-}
-
-char	*ft_strjoin(int size, char **strs, char *sep)
-{
-	int		res_len;
-	char	*res;
-
-	res_len = ft_strlen(size, strs, sep);
-	if (res_len == 0)
-		return (0);
-	res = (char *)malloc((res_len + 1) * sizeof(char));
-	if (res == 0)
-		return (0);
-	ft_fill_str(size, strs, sep, res);
-	res[res_len] = '\0';
-	return (res);
+    if (!s1 || !s2)
+        return (NULL);
+    res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+    if (!res)
+        return (NULL);
+    i = 0;
+    while (s1[i])
+    {
+        res[i] = s1[i];
+        i++;
+    }
+    j = 0;
+    while (s2[j])
+    {
+        res[i + j] = s2[j];
+        j++;
+    }
+    res[i + j] = '\0';
+    return (res);
 }

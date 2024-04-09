@@ -10,21 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrchr(const char *s, int c)
-{
-	char	*match;
+// char	*ft_strrchr(const char *s, int c)
+// {
+// 	char	*match;
 
-	match = 0;
-	while (*s)
-	{
-		if (*s == c)
-			match = (char *)s;
-		s++;
-	}
-	if (c == '\0')
-		return ((char *)s);
-	if (match == 0)
-		return (0);
-	else
-		return (match);
+// 	match = 0;
+// 	while (*s)
+// 	{
+// 		if (*s == c)
+// 			match = (char *)s;
+// 		s++;
+// 	}
+// 	if (c == '\0')
+// 		match = (char *)s;
+// 	if (match == 0)
+// 		return (0);
+// 	else
+// 		return (match);
+// }
+
+char    *ft_strrchr(const char *s, int c)
+{
+    char    *match;
+
+    match = 0;
+    while (*s)
+    {
+        if (*s == c)
+            match = (char *)s;
+        s++;
+    }
+    if (c == '\0' && *s == '\0')
+        match = (char *)s;
+    return (match);
 }
