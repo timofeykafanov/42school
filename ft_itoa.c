@@ -31,7 +31,7 @@ char	*ft_itoa(int n)
 {
 	int			len;
 	char		*str;
-	long long	num;
+	long		num;
 
 	num = n;
 	len = ft_nbrlen(num);

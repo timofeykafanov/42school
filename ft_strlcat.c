@@ -6,7 +6,7 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:21:42 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/11 10:18:17 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:46:26 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	s;
 	size_t	d;
 
-	dlen = 0;
-	slen = 0;
 	s = 0;
 	d = 0;
 	dlen = ft_strlen(dst);
