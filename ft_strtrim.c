@@ -33,9 +33,9 @@ int get_end_index(char const *s1, char const *set, int start)
     return (end);
 }
 
-char *create_empty_string(void)
+char    *create_empty_string(void)
 {
-    char *res;
+    char    *res;
 
     res = (char *)malloc(sizeof(char));
     if (!res)
@@ -44,10 +44,10 @@ char *create_empty_string(void)
     return (res);
 }
 
-char *create_trimmed_string(char const *s1, int start, int end)
+char    *create_trimmed_string(char const *s1, int start, int end)
 {
-    char *res;
-    int i;
+    char    *res;
+    int     i;
 
     res = (char *)malloc(sizeof(char) * (end - start + 2));
     if (!res)
@@ -63,7 +63,7 @@ char *create_trimmed_string(char const *s1, int start, int end)
     return (res);
 }
 
-char *ft_strtrim(char const *s1, char const *set)
+char    *ft_strtrim(char const *s1, char const *set)
 {
     int start;
     int end;
