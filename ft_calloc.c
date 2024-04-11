@@ -6,7 +6,7 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:23:40 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/04 13:33:34 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:50:30 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	i;
 	size_t	total_size;
-	void	*ptr;
+	char	*ptr;
 
 	total_size = nmemb * size;
 	ptr = malloc(total_size);
