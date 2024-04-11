@@ -6,7 +6,7 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:21:42 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/08 14:13:59 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:18:17 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	slen = 0;
 	s = 0;
 	d = 0;
-	while (dst[dlen])
-		dlen++;
-	while (src[slen])
-        slen++;
+	dlen = ft_strlen(dst);
+	slen = ft_strlen(src);
 	d = dlen;
 	if (size <= dlen)
 		return (slen + size);

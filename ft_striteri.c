@@ -6,20 +6,20 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:38:28 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/02 14:38:30 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:20:18 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-    unsigned int    i;
+	unsigned int	i;
 
-    if (!s || !f)
-        return;
-    i = 0;
-    while (s[i])
-    {
-        f(i, &s[i]);
-        i++;
-    }
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

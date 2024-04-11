@@ -6,22 +6,22 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:22:33 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/04 14:23:08 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:06:47 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char    *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-    char    *match;
+	char	*match;
 
-    match = 0;
-    while (*s)
-    {
-        if (*s == (char)c)
-            match = (char *)s;
-        s++;
-    }
-    if (*s == (char)c)
-        match = (char *)s;
-    return (match);
+	match = 0;
+	while (*s)
+	{
+		if (*s == (char)c)
+			match = (char *)s;
+		s++;
+	}
+	if (*s == (char)c)
+		match = (char *)s;
+	return (match);
 }

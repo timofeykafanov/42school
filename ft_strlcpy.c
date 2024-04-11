@@ -6,7 +6,7 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:21:31 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/08 13:32:31 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:10:18 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	while (*src)
 	{
 		src++;
-		len++;		
+		len++;
 	}
 	return (len);
 }

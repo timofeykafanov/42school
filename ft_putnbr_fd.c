@@ -6,15 +6,15 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:41:44 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/02 14:41:46 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:11:56 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-    if (n < 0)
+	if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
 		if (n == -2147483648)
