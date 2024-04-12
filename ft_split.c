@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft.h"
 
 int	count_words(char const *s, char c)
 {
@@ -36,6 +37,8 @@ char	*get_word(char const *s, char c)
 	i = 0;
 	while (s[i] != c && s[i] != '\0')
 		i++;
+	if (i == 0)
+		return (0);
 	word = (char *)malloc(sizeof(char) * (i + 1));
 	if (!word)
 		return (0);
@@ -49,7 +52,7 @@ char	*get_word(char const *s, char c)
 	return (word);
 }
 
-void	fill_res(char const *s, char c, char	**res)
+int	fill_res(char const *s, char c, char	**res)
 {
 	int	i;
 	int	j;
@@ -66,7 +69,7 @@ void	fill_res(char const *s, char c, char	**res)
 				while (j-- > 0)
 					free(res[j]);
 				free(res);
-				return ;
+				return ERROR;
 			}
 			j++;
 			while (s[i] != c && s[i] != '\0')
@@ -76,6 +79,7 @@ void	fill_res(char const *s, char c, char	**res)
 			i++;
 	}
 	res[j] = 0;
+	return SUCCESS;
 }
 
 char	**ft_split(char const *s, char c)
@@ -87,6 +91,7 @@ char	**ft_split(char const *s, char c)
 	res = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!res)
 		return (0);
-	fill_res(s, c, res);
+	if (fill_res(s, c, res) == ERROR)
+		return (NULL);
 	return (res);
 }

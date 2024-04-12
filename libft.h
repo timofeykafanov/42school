@@ -14,6 +14,8 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# define SUCCESS 0
+# define ERROR 1
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
