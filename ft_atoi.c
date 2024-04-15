@@ -31,6 +31,5 @@ int	ft_atoi(const char *nptr)
 		result = result * 10 + (*nptr - '0');
 		nptr++;
 	}
-	result *= sign;
-	return (result);
+	return (result * sign);
 }

@@ -39,7 +39,7 @@ char	*create_empty_string(void)
 
 	res = (char *)malloc(sizeof(char));
 	if (!res)
-		return (0);
+		return (NULL);
 	res[0] = '\0';
 	return (res);
 }
@@ -51,7 +51,7 @@ char	*create_trimmed_string(char const *s1, int start, int end)
 
 	res = (char *)malloc(sizeof(char) * (end - start + 2));
 	if (!res)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (start <= end)
 	{
@@ -69,7 +69,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int	end;
 
 	if (!s1 || !set)
-		return (0);
+		return (NULL);
 	start = get_start_index(s1, set);
 	end = get_end_index(s1, set, start);
 	if (end < start)

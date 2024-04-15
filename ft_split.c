@@ -38,10 +38,10 @@ char	*get_word(char const *s, char c)
 	while (s[i] != c && s[i] != '\0')
 		i++;
 	if (i == 0)
-		return (0);
+		return (NULL);
 	word = (char *)malloc(sizeof(char) * (i + 1));
 	if (!word)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (s[i] != c && s[i] != '\0')
 	{
@@ -52,12 +52,10 @@ char	*get_word(char const *s, char c)
 	return (word);
 }
 
-int	fill_res(char const *s, char c, char	**res)
+int	fill_res(char const *s, char c, char **res, int i)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (s[i])
 	{
@@ -69,7 +67,7 @@ int	fill_res(char const *s, char c, char	**res)
 				while (j-- > 0)
 					free(res[j]);
 				free(res);
-				return ERROR;
+				return (ERROR);
 			}
 			j++;
 			while (s[i] != c && s[i] != '\0')
@@ -78,20 +76,22 @@ int	fill_res(char const *s, char c, char	**res)
 		else
 			i++;
 	}
-	res[j] = 0;
-	return SUCCESS;
+	res[j] = NULL;
+	return (SUCCESS);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
+	int		i;
 
+	i = 0;
 	if (!s)
-		return (0);
+		return (NULL);
 	res = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
 	if (!res)
-		return (0);
-	if (fill_res(s, c, res) == ERROR)
+		return (NULL);
+	if (fill_res(s, c, res, i) == ERROR)
 		return (NULL);
 	return (res);
 }
