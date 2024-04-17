@@ -6,7 +6,7 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 09:00:22 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/16 09:32:06 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/17 09:13:37 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 #include "../libft/libft.h"
 
-int	ft_printf(void);
+int	ft_printf(const char *s, ...);
 
 #endif
