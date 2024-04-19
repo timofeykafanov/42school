@@ -1,17 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/03 09:23:52 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/11 14:45:27 by tkafanov         ###   ########.fr       */
+/*   Created: 2024/04/19 10:56:43 by tkafanov          #+#    #+#             */
+/*   Updated: 2024/04/19 10:56:48 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include "ft_printf.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
+}
+
+void	ft_putchar(char c, int *count)
+{
+	*count += write(1, &c, 1);
+}
+
+void	ft_putstr(char *str, int *count)
+{
+	while (*str)
+		*count += write(1, &(*str++), 1);
+}
 
 char	*ft_strdup(const char *s)
 {
