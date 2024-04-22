@@ -17,7 +17,7 @@ void	handle_c(va_list type, int *count)
 	char	c;
 
 	c = va_arg(type, int);
-	*count += write(1, &c, 1);
+	ft_putchar(c, count);
 }
 
 void	handle_s(va_list type, int *count)
@@ -26,11 +26,9 @@ void	handle_s(va_list type, int *count)
 
 	str = va_arg(type, char *);
 	if (!str)
-	{
 		ft_putstr("(null)", count);
-		return ;
-	}
-	ft_putstr(str, count);
+	else
+		ft_putstr(str, count);
 }
 
 void	handle_d_and_i(va_list type, int *count)
