@@ -16,15 +16,6 @@
 
 #include "get_next_line.h"
 
-// char	*get_next_line(int fd)
-// {
-// 	static char	*previous;
-
-// 	if (fd < 0 || BUFFER_SIZE <= 0)
-// 		return (NULL);
-// 	previous = (char *)malloc(BUFFER_SIZE + 1);
-// }
-
 char	*get_next_line(int fd)
 {
 	static char	buffer[BUFFER_SIZE + 1];
@@ -49,16 +40,25 @@ char	*get_next_line(int fd)
 		while (buffer[position] != '\n' && buffer[position] != '\0')
 			position++;
 		line_length = position - i;
+		if (line_length <= 0)
+            return (NULL);
 		line = (char *)malloc(line_length + 1);
 		if (!line)
 			return (NULL);
 		j = 0;
 		while (i < position)
 			line[j++] = buffer[i++];
-		line[line_length] = '\0';
 		position++;
 		if (buffer[i] == '\n')
+		{
+			line[j] = '\n';
+			line[line_length + 1] = '\0';
 			return (line);
+		}
+		if (buffer[i] == '\0')
+		{
+			return (line);
+		}
 		free(line);
 	}
 	return (NULL);
