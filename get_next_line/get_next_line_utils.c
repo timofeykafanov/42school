@@ -6,6 +6,78 @@
 /*   By: tkafanov <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 10:41:19 by tkafanov          #+#    #+#             */
-/*   Updated: 2024/04/29 10:41:20 by tkafanov         ###   ########.fr       */
+/*   Updated: 2024/04/30 08:50:00 by tkafanov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
+
+int	ft_strlen(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return (len);
+}
+
+char	*ft_strchr(char *s, char c)
+{
+	while (*s != c)
+	{
+		if (!*s)
+			return (0);
+		s++;
+	}
+	return (s);
+}
+
+char	*ft_strjoin(char **s1, char **s2)
+{
+	char	*res;
+	int		i;
+	int		j;
+
+	if (!*s1)
+		*s1 = "";
+	res = (char *)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
+	if (!res)
+		return (NULL);
+	i = 0;
+	while ((*s1)[i])
+	{
+		res[i] = (*s1)[i];
+		i++;
+	}
+	j = 0;
+	while ((*s2)[j])
+	{
+		res[i + j] = (*s2)[j];
+		j++;
+	}
+	res[i + j] = '\0';
+	free(*s2);
+	free(*s1);
+	return (res);
+}
+
+char	*ft_strdup(char *s)
+{
+	char	*dup_str;
+	int		len;
+	int		i;
+
+	i = 0;
+	len = ft_strlen(s);
+	dup_str = (char *)malloc((len + 1) * sizeof(char));
+	if (!dup_str)
+		return (NULL);
+	while (s[i])
+	{
+		dup_str[i] = s[i];
+		i++;
+	}
+	dup_str[i] = '\0';
+	return (dup_str);
+}
