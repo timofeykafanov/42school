@@ -12,6 +12,17 @@
 
 #include "get_next_line.h"
 
+#include <stdio.h>
+
+void	free_and_null(char **p)
+{
+	if (p && *p)
+	{
+		free(*p);
+		*p = NULL;
+	}
+}
+
 int	ft_strlen(char *str)
 {
 	int	len;
@@ -39,8 +50,6 @@ char	*ft_strjoin(char **s1, char **s2)
 	int		i;
 	int		j;
 
-	if (!*s1)
-		*s1 = "";
 	res = (char *)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
 	if (!res)
 		return (NULL);
@@ -57,8 +66,8 @@ char	*ft_strjoin(char **s1, char **s2)
 		j++;
 	}
 	res[i + j] = '\0';
-	free(*s2);
-	free(*s1);
+	free_and_null(&(*s1));
+	free_and_null(&(*s2));
 	return (res);
 }
 
