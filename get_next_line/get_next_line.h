@@ -15,7 +15,7 @@
 
 char	*get_next_line(int fd);
 int		ft_strlen(char *str);
-char	*ft_strchr(char *s, char c);
+int		include_n(char *s);
 char	*ft_strjoin(char **s1, char **s2);
 char	*ft_strdup(char *s);
 void	free_and_null(char **p);

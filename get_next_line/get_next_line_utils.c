@@ -31,15 +31,15 @@ int	ft_strlen(char *str)
 	return (len);
 }
 
-char	*ft_strchr(char *s, char c)
+int	include_n(char *s)
 {
-	while (*s != c)
+	while (s && *s)
 	{
-		if (!*s)
-			return (NULL);
+		if (*s == '\n')
+			return (1);
 		s++;
 	}
-	return (s);
+	return (0);
 }
 
 char	*ft_strjoin(char **s1, char **s2)
