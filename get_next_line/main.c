@@ -10,51 +10,51 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <fcntl.h>
-#include "get_next_line.h"
+// #include <stdio.h>
+// #include <fcntl.h>
+// #include "get_next_line.h"
 
-int	main(void)
-{
-	char	*line;
-	int		fd;
-	int		i;
+// int	main(void)
+// {
+// 	char	*line;
+// 	int		fd;
+// 	int		i;
 
-	i = 0;
-	fd = open("test.txt", O_RDONLY);
-	// if (fd == -1)
-	// {
-	// 	printf("fd error");
-	// 	return (1);
-	// }
-	line = get_next_line(fd);
-	while (line)
-	{
-		printf("Line: %s", line);
-		free(line);
-		line = get_next_line(fd);
-		i++;
-	}
-	// line = get_next_line(fd);
-	// printf("Line: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("Line: %s", line);
-	// free(line);
-	// line = get_next_line(fd);
-	// printf("Line: %s", line);
-	// free(line);
-	// while ((line = get_next_line(0)) != NULL)
-	// {
-	// 	printf("Line: %s", line);
-	// 	free(line);
-	// }
-	// line = get_next_line(2);
-	// printf("Line: %s\n", line);
-	// free(line);
-	// line = get_next_line(2);
-	// printf("Line: %s\n", line);
-	// free(line);
-	close(fd);
-	return (0);
-}
+// 	i = 0;
+// 	fd = open("test.txt", O_RDONLY);
+// 	// if (fd == -1)
+// 	// {
+// 	// 	printf("fd error");
+// 	// 	return (1);
+// 	// }
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		printf("Line: %s", line);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 		i++;
+// 	}
+// 	// line = get_next_line(fd);
+// 	// printf("Line: %s", line);
+// 	// free(line);
+// 	// line = get_next_line(fd);
+// 	// printf("Line: %s", line);
+// 	// free(line);
+// 	// line = get_next_line(fd);
+// 	// printf("Line: %s", line);
+// 	// free(line);
+// 	// while ((line = get_next_line(0)) != NULL)
+// 	// {
+// 	// 	printf("Line: %s", line);
+// 	// 	free(line);
+// 	// }
+// 	// line = get_next_line(2);
+// 	// printf("Line: %s\n", line);
+// 	// free(line);
+// 	// line = get_next_line(2);
+// 	// printf("Line: %s\n", line);
+// 	// free(line);
+// 	close(fd);
+// 	return (0);
+// }
