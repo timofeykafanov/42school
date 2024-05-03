@@ -12,8 +12,6 @@
 
 #include "get_next_line.h"
 
-#include <stdio.h>
-
 void	free_and_null(char **p)
 {
 	if (p && *p)
@@ -38,7 +36,7 @@ char	*ft_strchr(char *s, char c)
 	while (*s != c)
 	{
 		if (!*s)
-			return (0);
+			return (NULL);
 		s++;
 	}
 	return (s);

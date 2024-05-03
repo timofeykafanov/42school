@@ -23,17 +23,20 @@ char	*extract_line(char *buffer)
 	char	*str;
 
 	i = 0;
-	len = 1;
+	len = 0;
 	while (buffer[len] && buffer[len] != '\n')
 		len++;
+	len++;
 	str = (char *)malloc(len + 1);
 	if (!str)
 		return (NULL);
-	while (i <= len)
+	while (i < len)
 	{
 		str[i] = buffer[i];
 		i++;
 	}
+	if (buffer[i] == '\n')
+		str[i] = buffer[i];
 	str[i] = '\0';
 	return (str);
 }
