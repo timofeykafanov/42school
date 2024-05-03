@@ -27,22 +27,23 @@ int	main(void)
 	// 	printf("fd error");
 	// 	return (1);
 	// }
-	// while (i < 3)
-	// {
-	// 	line = get_next_line(fd);
-	// 	printf("Line: %s", line);
-	// 	free(line);
-	// 	i++;
-	// }
 	line = get_next_line(fd);
-	printf("Line: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Line: %s", line);
-	free(line);
-	line = get_next_line(fd);
-	printf("Line: %s", line);
-	free(line);
+	while (line)
+	{
+		printf("Line: %s", line);
+		free(line);
+		line = get_next_line(fd);
+		i++;
+	}
+	// line = get_next_line(fd);
+	// printf("Line: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("Line: %s", line);
+	// free(line);
+	// line = get_next_line(fd);
+	// printf("Line: %s", line);
+	// free(line);
 	// while ((line = get_next_line(0)) != NULL)
 	// {
 	// 	printf("Line: %s", line);

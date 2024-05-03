@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# define BUFFER_SIZE 4000
 #endif
 
 #include "get_next_line.h"
@@ -62,11 +62,10 @@ char	*extract_line(char *buffer)
 // 	}
 // }
 
-#include <stdio.h>
-
 char	*read_text(int fd)
 {
-	static char *buffer;
+	static char	*buffer;
+	static int	is_end = 0;
 	char		*temp;
 	char		*tmp;
 	char		*line;
@@ -86,21 +85,34 @@ char	*read_text(int fd)
 				free_and_null(&buffer);
 			return (line);
 		}
-		temp = (char *)malloc(BUFFER_SIZE + 1);
-		if (!temp)
-			return(NULL);
-		bytes_read = read(fd, temp, BUFFER_SIZE);
-		if (bytes_read <= 0)
+		if (is_end)
 		{
-			return (free_and_null(&temp), free_and_null(&buffer), NULL);
+			if (is_end == 2)
+				return (NULL);
+			else
+			{
+				is_end = 2;
+				return (buffer);
+			}
 		}
-		temp[bytes_read] = '\0';
-		if (buffer)
-			tmp = ft_strdup(buffer);
-		else
-			tmp = ft_strdup("");
-		free_and_null(&buffer);
-		buffer = ft_strjoin(&tmp, &temp);
+		if (!is_end)
+		{
+			temp = (char *)malloc(BUFFER_SIZE + 1);
+			if (!temp)
+				return (NULL);
+			bytes_read = read(fd, temp, BUFFER_SIZE);
+			if (bytes_read < BUFFER_SIZE)
+				is_end = 1;
+			if (bytes_read < 0)
+				return (free_and_null(&temp), free_and_null(&buffer), NULL);
+			temp[bytes_read] = '\0';
+			if (buffer)
+				tmp = ft_strdup(buffer);
+			else
+				tmp = ft_strdup("");
+			free_and_null(&buffer);
+			buffer = ft_strjoin(&tmp, &temp);
+		}
 	}
 }
 
@@ -110,7 +122,6 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (read_text(fd));
 }
-
 
 // char	*extract_line(char *buffer, int position, char *line)
 // {
