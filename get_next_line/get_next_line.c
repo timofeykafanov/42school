@@ -186,6 +186,8 @@ char	*get_next_line(int fd)
 			{
 				is_end = 2;
 				line = ft_strdup(buffer);
+				if (!line)
+					return (NULL);
 				free_and_null(&buffer);
 				if (*line)
 					return (line);
