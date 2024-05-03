@@ -18,25 +18,54 @@ int	main(void)
 {
 	char	*line;
 	int		fd;
-	int		i;
+	// int		i;
 
-	i = 0;
+	// i = 0;
 	fd = open("empty.txt", O_RDONLY);
+    line = get_next_line(fd);
+    printf("Line: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("Line: %s", line);
+    free(line);
+    do {
+        line = get_next_line(fd);
+        free(line);
+    } while (line != NULL);
+    close(fd);
+    fd = open("empty.txt", O_RDONLY);
+    line = get_next_line(fd);
+    printf("Line: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("Line: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("Line: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("Line: %s", line);
+    free(line);
+    line = get_next_line(fd);
+    printf("Line: %s", line);
+    free(line);
+    close(fd);
+    printf("\n");
 	// if (fd == -1)
 	// {
 	// 	printf("fd error");
 	// 	return (1);
 	// }
-	while (1)
-	{
-        line = get_next_line(fd);
-        if (!line)
-            break;
-		printf("Line: %s", line);
-		free(line);
-		i++;
-	}
-    close(fd);
+	// while (1)
+	// {
+    //     line = get_next_line(fd);
+    //     if (!line)
+    //         break;
+	// 	printf("Line: %s", line);
+	// 	free(line);
+	// 	i++;
+	// }
+    // close(fd);
 
 	// line = get_next_line(fd);
 	// printf("Line: %s", line);

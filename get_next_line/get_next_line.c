@@ -170,10 +170,17 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	static int	is_end = 0;
+	static int	last_fd = -1;
 	char 		*line;
 
 	if (fd < 0 || fd > 99 || BUFFER_SIZE <= 0)
 		return (NULL);
+	if (last_fd != fd)
+	{
+		buffer = NULL;
+		is_end = 0;
+		last_fd = fd;
+	}
 	while (1)
 	{
 		if (buffer && include_n(buffer))
@@ -181,13 +188,19 @@ char	*get_next_line(int fd)
 		if (is_end)
 		{
 			if (is_end == 2)
+			{
+				is_end = 0;
 				return (NULL);
+			}
 			else
 			{
 				is_end = 2;
 				line = ft_strdup(buffer);
 				if (!line)
+				{
+					is_end = 0;
 					return (NULL);
+				}	
 				free_and_null(&buffer);
 				if (*line)
 					return (line);
