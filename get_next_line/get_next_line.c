@@ -166,12 +166,37 @@ int	read_text(int fd, char **buffer, int *is_end)
 	return (1);
 }
 
+char	*last_line(char **buffer, int *is_end)
+{
+	char	*line;
+
+	if (*is_end == 2)
+	{
+		*is_end = 0;
+		return (NULL);
+	}
+	else
+	{
+		*is_end = 2;
+		line = ft_strdup(*buffer);
+		if (!line)
+		{
+			*is_end = 0;
+			return (NULL);
+		}
+		free_and_null(buffer);
+		if (*line)
+			return (line);
+		else
+			return (free_and_null(&line), NULL);
+	}
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
 	static int	is_end = 0;
 	static int	last_fd = -1;
-	char 		*line;
 
 	if (fd < 0 || fd > 99 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -186,28 +211,7 @@ char	*get_next_line(int fd)
 		if (buffer && include_n(buffer))
 			return (return_line(&buffer));
 		if (is_end)
-		{
-			if (is_end == 2)
-			{
-				is_end = 0;
-				return (NULL);
-			}
-			else
-			{
-				is_end = 2;
-				line = ft_strdup(buffer);
-				if (!line)
-				{
-					is_end = 0;
-					return (NULL);
-				}	
-				free_and_null(&buffer);
-				if (*line)
-					return (line);
-				else
-					return (free_and_null(&line), NULL);
-			}
-		}
+			return (last_line(&buffer, &is_end));
 		if (!is_end)
 		{
 			if (!read_text(fd, &buffer, &is_end))
