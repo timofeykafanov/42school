@@ -186,7 +186,7 @@ char	*last_line(char **buffer)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer[1024];
+	static char	*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
