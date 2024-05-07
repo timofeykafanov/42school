@@ -182,7 +182,7 @@ char	*last_line(char **buffer, int *is_end)
 		if (!line)
 		{
 			*is_end = 0;
-			return (NULL);
+			return (free_and_null(buffer), NULL);
 		}
 		free_and_null(buffer);
 		if (*line)
