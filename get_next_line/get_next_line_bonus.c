@@ -97,7 +97,7 @@ char	*last_line(char **buffer)
 char	*get_next_line(int fd)
 {
 	static char	*buffer[1024];
-	int			result;
+	int			read_to_end;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
@@ -105,10 +105,10 @@ char	*get_next_line(int fd)
 	{
 		if (buffer[fd] && include_n(buffer[fd]))
 			return (return_line(&buffer[fd]));
-		result = read_text(fd, &buffer[fd]);
-		if (!result)
+		read_to_end = read_text(fd, &buffer[fd]);
+		if (!read_to_end)
 			return (free_and_null(&buffer[fd]), NULL);
-		if (result == 2)
+		if (read_to_end == 2)
 			return (last_line(&buffer[fd]));
 	}
 }
