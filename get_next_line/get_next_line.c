@@ -134,16 +134,16 @@ char	*return_line(char **buffer)
 
 	line = extract_line(*buffer);
 	if (!line)
-		return (free_and_null(buffer), printf("%p\n", *buffer), NULL);
+		return (free_and_null(buffer), NULL);
 	tmp = ft_strdup(*buffer + ft_strlen(line));
 	free_and_null(buffer);
 	*buffer = tmp;
 	if (*buffer && !(*buffer)[0])
 		free_and_null(buffer);
-	return (printf("%p\n", *buffer), line);
+	return (line);
 }
 
-int	read_text(int fd, char **buffer, int *is_end)
+int	read_text(int fd, char **buffer)
 {
 	char	*temp;
 	char	*tmp;
@@ -153,8 +153,8 @@ int	read_text(int fd, char **buffer, int *is_end)
 	if (!temp)
 		return (free_and_null(buffer), 0);
 	bytes_read = read(fd, temp, BUFFER_SIZE);
-	if (bytes_read < BUFFER_SIZE)
-		*is_end = 1;
+	if (bytes_read == 0)
+		return (free(temp), 2);
 	if (bytes_read < 0)
 		return (free_and_null(&temp), free_and_null(buffer), 0);
 	temp[bytes_read] = '\0';
@@ -166,57 +166,39 @@ int	read_text(int fd, char **buffer, int *is_end)
 	return (1);
 }
 
-char	*last_line(char **buffer, int *is_end)
+char	*last_line(char **buffer)
 {
 	char	*line;
 
-	if (*is_end == 2)
-	{
-		*is_end = 0;
+	if (!(*buffer))
 		return (NULL);
-	}
-	else
+	line = ft_strdup(*buffer);
+	if (!line)
 	{
-		*is_end = 2;
-		line = ft_strdup(*buffer);
-		if (!line)
-		{
-			*is_end = 0;
-			return (free_and_null(buffer), NULL);
-		}
-		free_and_null(buffer);
-		if (*line)
-			return (printf("%p\n", *buffer), line);
-		else
-			return (free_and_null(&line), printf("%p\n", *buffer), NULL);
+		return (free_and_null(buffer), NULL);
 	}
+	free_and_null(buffer);
+	if (*line)
+		return (line);
+	else
+		return (free_and_null(&line), NULL);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
-	static int	is_end = 0;
-	static int	last_fd = -1;
+	static char	*buffer[1024];
 
-	if (fd < 0 || fd > 99 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (last_fd != fd)
-	{
-		buffer = NULL;
-		is_end = 0;
-		last_fd = fd;
-	}
 	while (1)
 	{
 		if (buffer && include_n(buffer))
 			return (return_line(&buffer));
-		if (is_end)
-			return (last_line(&buffer, &is_end));
-		if (!is_end)
-		{
-			if (!read_text(fd, &buffer, &is_end))
-				return (printf("%p\n", buffer), NULL);
-		}
+		int result = read_text(fd, &buffer);
+		if (!result)
+			return (free_and_null(&buffer), NULL);
+		if (result == 2)
+			return (last_line(&buffer));
 	}
 }
 
