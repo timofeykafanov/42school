@@ -187,6 +187,7 @@ char	*last_line(char **buffer)
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
+	int			result;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -194,7 +195,7 @@ char	*get_next_line(int fd)
 	{
 		if (buffer && include_n(buffer))
 			return (return_line(&buffer));
-		int result = read_text(fd, &buffer);
+		result = read_text(fd, &buffer);
 		if (!result)
 			return (free_and_null(&buffer), NULL);
 		if (result == 2)

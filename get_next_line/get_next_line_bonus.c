@@ -12,81 +12,103 @@
 
 #include "get_next_line_bonus.h"
 
-void	free_and_null(char **p)
+char	*extract_line(char *buffer)
 {
-	if (p && *p)
-	{
-		free(*p);
-		*p = NULL;
-	}
-}
-
-int	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len])
-		len++;
-	return (len);
-}
-
-int	include_n(char *s)
-{
-	while (s && *s)
-	{
-		if (*s == '\n')
-			return (1);
-		s++;
-	}
-	return (0);
-}
-
-char	*ft_strjoin(char **s1, char **s2)
-{
-	char	*res;
 	int		i;
-	int		j;
-
-	res = (char *)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
-	if (!res)
-		return (free_and_null(s1), free_and_null(s2), NULL);
-	i = 0;
-	while ((*s1)[i])
-	{
-		res[i] = (*s1)[i];
-		i++;
-	}
-	j = 0;
-	while ((*s2)[j])
-	{
-		res[i + j] = (*s2)[j];
-		j++;
-	}
-	res[i + j] = '\0';
-	free_and_null(&(*s1));
-	free_and_null(&(*s2));
-	return (res);
-}
-
-char	*ft_strdup(char *s)
-{
-	char	*dup_str;
 	int		len;
-	int		i;
+	char	*str;
 
 	i = 0;
-	if (!s)
-		s = "";
-	len = ft_strlen(s);
-	dup_str = (char *)malloc((len + 1) * sizeof(char));
-	if (!dup_str)
+	len = 0;
+	while (buffer[len] && buffer[len] != '\n')
+		len++;
+	len++;
+	str = (char *)malloc(len + 1);
+	if (!str)
 		return (NULL);
-	while (s[i])
+	while (i < len)
 	{
-		dup_str[i] = s[i];
+		str[i] = buffer[i];
 		i++;
 	}
-	dup_str[i] = '\0';
-	return (dup_str);
+	if (buffer[i] == '\n')
+		str[i] = buffer[i];
+	str[i] = '\0';
+	return (str);
+}
+
+char	*return_line(char **buffer)
+{
+	char	*line;
+	char	*tmp;
+
+	line = extract_line(*buffer);
+	if (!line)
+		return (free_and_null(buffer), NULL);
+	tmp = ft_strdup(*buffer + ft_strlen(line));
+	free_and_null(buffer);
+	*buffer = tmp;
+	if (*buffer && !(*buffer)[0])
+		free_and_null(buffer);
+	return (line);
+}
+
+int	read_text(int fd, char **buffer)
+{
+	char	*temp;
+	char	*tmp;
+	int		bytes_read;
+
+	temp = (char *)malloc(BUFFER_SIZE + 1);
+	if (!temp)
+		return (free_and_null(buffer), 0);
+	bytes_read = read(fd, temp, BUFFER_SIZE);
+	if (bytes_read == 0)
+		return (free(temp), 2);
+	if (bytes_read < 0)
+		return (free_and_null(&temp), free_and_null(buffer), 0);
+	temp[bytes_read] = '\0';
+	tmp = ft_strdup(*buffer);
+	if (!tmp)
+		return (free_and_null(&temp), free_and_null(buffer), 0);
+	free_and_null(buffer);
+	*buffer = ft_strjoin(&tmp, &temp);
+	return (1);
+}
+
+char	*last_line(char **buffer)
+{
+	char	*line;
+
+	if (!(*buffer))
+		return (NULL);
+	line = ft_strdup(*buffer);
+	if (!line)
+	{
+		return (free_and_null(buffer), NULL);
+	}
+	free_and_null(buffer);
+	if (*line)
+		return (line);
+	else
+		return (free_and_null(&line), NULL);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	*buffer[1024];
+	int			result;
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
+		return (NULL);
+	while (1)
+	{
+		if (buffer[fd] && include_n(buffer[fd]))
+			return (return_line(&buffer[fd]));
+		result = read_text(fd, &buffer[fd]);
+		if (!result)
+			return (free_and_null(&buffer[fd]), NULL);
+		if (result == 2)
+			return (last_line(&buffer[fd]));
+	}
 }
