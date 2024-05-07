@@ -10,6 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+#include <stdio.h>
+#include <fcntl.h>
+#include "get_next_line.h"
+
+int	main(void)
+{
+	char	*line;
+	int		fd;
+	// int		i;
+
+	// i = 0;
+	fd = open("empty.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+}
+
+
 // #include <stdio.h>
 // #include <fcntl.h>
 // #include "get_next_line.h"

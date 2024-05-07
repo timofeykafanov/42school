@@ -134,13 +134,13 @@ char	*return_line(char **buffer)
 
 	line = extract_line(*buffer);
 	if (!line)
-		return (free_and_null(buffer), NULL);
+		return (free_and_null(buffer), printf("%p\n", *buffer), NULL);
 	tmp = ft_strdup(*buffer + ft_strlen(line));
 	free_and_null(buffer);
 	*buffer = tmp;
 	if (*buffer && !(*buffer)[0])
 		free_and_null(buffer);
-	return (line);
+	return (printf("%p\n", *buffer), line);
 }
 
 int	read_text(int fd, char **buffer, int *is_end)
@@ -186,9 +186,9 @@ char	*last_line(char **buffer, int *is_end)
 		}
 		free_and_null(buffer);
 		if (*line)
-			return (line);
+			return (printf("%p\n", *buffer), line);
 		else
-			return (free_and_null(&line), NULL);
+			return (free_and_null(&line), printf("%p\n", *buffer), NULL);
 	}
 }
 
@@ -215,7 +215,7 @@ char	*get_next_line(int fd)
 		if (!is_end)
 		{
 			if (!read_text(fd, &buffer, &is_end))
-				return (NULL);
+				return (printf("%p\n", buffer), NULL);
 		}
 	}
 }

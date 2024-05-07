@@ -50,7 +50,7 @@ char	*ft_strjoin(char **s1, char **s2)
 
 	res = (char *)malloc(sizeof(char) * (ft_strlen(*s1) + ft_strlen(*s2) + 1));
 	if (!res)
-		return (NULL);
+		return (free_and_null(s1), free_and_null(s2), NULL);
 	i = 0;
 	while ((*s1)[i])
 	{
